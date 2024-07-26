@@ -1,0 +1,18 @@
+TO-DO list for code in the "Thal Stim Cx Rec" project folder
+
+runPipeline
+- add detailed instructions for how to use it
+
+calcDirectEntropyISI_batch
+- reconfigure code content as function output
+
+runEntropyDirectISI
+
+buildDataSelectTableName
+- add more isfield queries as I go updating the user-input pipeParams
+
+selectDataRows
+- implement case for grabbing all neuronType labels
+
+deltaH_ttest
+- add in case for Frequency p-values

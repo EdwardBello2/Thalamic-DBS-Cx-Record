@@ -1,0 +1,68 @@
+
+- solve the grouping issue across scripts
+- Update README with all new scripts
+- Add in no-DBS condition to image of isi progression
+- try making deltaH boxplot version with log transformed data! 
+
+- update all IMPORTANT scripts to work with new tables and steps
+	- stow away old scripts that won't be updated
+
+
+- generalize string inputs in ppar so that assigning a cell array of strings gets them all chosen in the filter
+- Update labelling of H_PREbootAv for both isi and psth tables
+- make sure all currently used scripts can handle the ContactSweep case
+- redo boxplot special function so that it accepts ppar structure for property control
+
+DOWN THE LINE:
+- describe in comments each script's output data as well, so that tests can be designed around them. 
+- Implement Phase-lock detection in a common function rather than repeated in each script
+- scatter and pie: factor in the one-category case
+- Annotate all tables with descriptions, both general and for variables
+- Add in an initialization step where the project folder and subfolders are added to the path, but not the git stuff in it
+- tally up which fields each script needed from ppar and add comment reference in body of script
+- update master table to count C3 as frequency sweep too & update master table filter with ppar for Contact to use for Fsweep choice
+- Create a master ppar checker for allowed ppar inputs
+- begin each script with a checking function for ppar fields to make sure they are inputs compatible with script
+- Redo EntropyPsthLetter_Analysis_SU_2HzThresh_60pre_60dbs_10000boots table to reflect intermediatData vs. AnalysisData table rules
+- Generate table/individual files for intermediate PSTH mat files
+- Generate table/individual files for intermediate logISI mat files
+- Create repeatable pipeline for different input parameters
+- implement tracking of table-generating metadata within each table:
+	- timeToGenerate
+	- datetimeGenerated
+	- generatingFunc
+	- ParentTables
+	- ChildTables
+- Add full descriptions to all tables
+- implement automated mass-update step of all data that depends on some parent data when that parent data is changed
+
+
+
+RULES TO FOLLOW WHEN WRITING NEW CODE:
+1. All whole-table operations are to happen at the "script_ ... " level; the only exceptions are the functions found in "scr\tableFuncs"
+2. When possible, modular functions are to be made and shared across scripts, with inputs as general as possible (i.e. no table inputs or specificially named inputs). 
+	2.1 For functions, special instructions to be passed in ppar struct if needed.
+3. All intermediate processing steps should generate a .mat at the RECORD level
+4. Every time a change is made to a piece of code, test-run all dependent operations for consistent behavior
+
+Scripts: they perform either a VISUALIZATION, or a STAT TEST (or both). Need to specify all output data in comments.
+Functions: they serve as INTERMEDIATE PROCESSING operations that can potentially be shared across scripts and/or other functions
+
+
+
+DONE:
+- implement entropyType selection in boxplots script
+- decide on LFS and HFS grouping approach
+- update script_displayPhaseLockPercVsdbsTrialCond_barplot.m to give a table with numerical results 
+- Find out if new way to plot deltaH boxplots is WRONG??? (ASSUME THAT MY LATEST PIPELINE IS CORRECT, AND THE OLD STUFF IS WRONG)
+- Extend script_CompareRatePsthIsi.m to disp objectID and filenum, as well as rate test
+- create script for showing pie chart of number of phase-locked cells detected
+- separate out AnalyzeEntropy script into simplest possible outputs
+- update ppar list with ppar.dispPhaseLocked = 'phaseLck'; % 'phaseLck' | 'nonPhaseLck' | 'both'
+- update phllock script with filterTable_Master function
+- Redo spkRate intermediate Data to pool both subjects
+- Release an alpha of Entropy toolbox
+- Create preliminary parameter initialization script
+- Combine 3 main tables into one super-table
+- Redo EntropyISI table with intermediate data stored
+- Redo EntropyLetter table with intermediate data stored
